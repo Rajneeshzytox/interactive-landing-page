@@ -1,0 +1,494 @@
+/* External Files import */
+@font-face{
+  font-family: font-light;
+  src: url(/Assets/fonts/cd-300.otf) ;
+  font-weight: 300;
+}
+@font-face{
+  font-family: font-regular;
+  src: url(/Assets/fonts/cd-400.otf);
+  font-weight: normal;
+}
+@font-face{
+  font-family: font-medium;
+  src: url(/Assets/fonts/cd-500.otf);
+  font-weight: 500;
+}
+@font-face{
+  font-family: font-semiBold;
+  src: url(/Assets/fonts/cd-600.otf);
+  font-weight: 600;
+}
+@font-face{
+  font-family: font-bold;
+  src: url(/Assets/fonts/cd-700.otf) ;
+  font-weight: 700;
+}
+@font-face{
+  font-family: tarr;
+  src: url(/Assets/fonts/Tarr.otf);
+}
+
+
+/* root */
+:root{
+  /* colors */
+  --light-yellow: 53, 77%, 95%;
+  --light-red: hsl(357, 80%, 85%);
+  --dark-red: hsl(344, 77%, 60%);
+  --dark-blue: hsl(218, 77%, 60%);
+  --bg: 188, 100%, 9%;
+  
+  
+  --light-green: hsl(175, 80%, 68%);
+  --dark-pink: hsl(317, 77%, 60%);
+  --light-pink: 317, 77%, 85%;
+  
+  
+  
+}
+
+/* --------------------
+    GENERAL CSS
+-------------------- */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  text-wrap: balance;
+  transition: .2s all;
+}
+body{
+  
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: hsla(var(--bg), 1);
+  color: hsl(var(--light-yellow));
+  font-size: calc(1rem + 1vw); 
+  line-height: 1.3;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a,li,span{
+  display: inline-block;
+}
+a,img{
+  cursor: pointer;
+}
+img{
+  display: block;
+  max-width: clamp(50px, 100%, 100%);
+}
+.bgfull{
+  background-size: contain;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+section,footer,header{
+  position: relative;
+  width: 100%;
+  
+}
+section{
+  min-height: 50vh;
+  overflow: hidden;
+}
+
+
+
+.m-0{margin: 0 !important;}
+.p-0{padding: 0 !important;}
+.o-1{ opacity: 1 !important;}
+
+.notActive{
+  pointer-events: none;
+  cursor: none;
+  opacity: 0;
+}
+.notScroll{
+  overflow-y: hidden;
+}
+.blur{
+  filter: blur(50px) ;
+}
+
+.round{
+  aspect-ratio: 1;
+  border-radius: 100%;
+}
+
+.pevent{
+  pointer-events: none;
+}
+.relative{
+  position: relative;
+}
+.back{
+  position: absolute;
+  z-index: -99;
+  opacity: 0.6;
+}
+
+/* --------------------
+    TYPOGRAPHY
+-------------------- */
+p, a, li, table, input, button{
+    letter-spacing: 0.3px; 
+    font-family: inherit;
+    text-decoration: none;
+    list-style: none;
+    font-weight: 500;
+}
+
+p{
+    margin: 0.5rem 0 1rem 0;
+    padding-bottom: 0.7rem ;
+    width: clamp(200px, 100%, 500px);
+    opacity: 0.8;
+}
+
+h1, h2, h3, h4{
+    letter-spacing: -0.3px;
+    line-height: 0.9;
+    
+}
+
+h1{
+    font-family: font-medium;
+    font-size: 2.4rem;
+    margin: 3rem 0 !important;
+}
+h2{
+    font-size: 1.7rem;
+    margin: 2.7rem 0 1.8rem 0 !important;
+    font-family: font-semiBold;
+    opacity: 0.95;
+}
+h3{
+    font-family: font-medium;
+    font-size: 1.5rem;
+    opacity: 0.85;
+    margin: 1.4rem 0 1rem 0 !important;
+}
+h4{
+  opacity: 0.8;
+  font-family: font-regular;
+}
+h5, h6{
+    display: inline-block;
+    opacity: 0.75;
+    font-family: font-light;
+}
+hr{
+    opacity: 0.4;
+    width: 90%;
+    margin: auto;
+}
+
+
+/* --------------------
+    LAYOUT
+-------------------- */
+.flex-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex{
+  display: flex;
+  align-items: center;
+}
+.grid-center{
+  display: grid !important;
+  place-content: center !important;
+}
+
+/* --------------------
+    main css
+-------------------- */
+/* page section */
+.page{
+  width: clamp(100%, 100%, 1024px) !important;
+  max-width: 1024px;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: flex-start !important;
+  position: relative;
+}
+
+/* header start */
+header{
+  width: clamp(100%, 100%, 720px) !important;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  position: relative;
+   z-index: 9999;
+   position: fixed;
+   top: 0;
+   left: 0;
+   border-radius: 0% 0% 1rem 1rem ;
+   
+}
+header::after{
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  width: 0%;
+  height: 2px;
+  background: hsl(var(--light-pink));
+  animation: scroll-load linear;
+  animation-timeline: scroll();
+  transition: 0.2s all;
+}
+
+@keyframes scroll-load{
+  to{width:100%;}
+}
+
+header .logo{
+  mix-blend-mode: difference;
+}
+
+header nav .nav-btn{
+  width: 2rem;
+  aspect-ratio: 1;
+  overflow: hidden;
+ 
+}
+.nav-btn svg{
+  height: 100%;
+  width: 100%;
+  mix-blend-mode: difference;
+}
+ .nav-btn svg *{
+    animation: stroke-Change 2s linear infinite;
+  }
+@keyframes stroke-Change{
+  0%{stroke: hsl(var(--light-yellow));}
+  25%,50%{stroke: var(--light-red);}
+  80%,100%{stroke: hsl(var(--light-yellow));}
+}
+
+header nav .navItems{
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  overflow-y: scroll;
+  flex-direction: column;
+  background: hsla(var(--bg), 1);
+  padding: 3rem 0;
+  border-bottom: 1px solid hsl(var(--light-yellow));
+  transition: 0.5s all;
+}
+
+
+
+header nav .navItems li a{
+    
+    padding: 0.5rem 1rem;
+    color: hsl(var(--light-yellow));
+  }
+
+/* Hero section */
+.hero{
+  flex-direction: column;
+  padding-top: 5.5rem;
+  gap: max(10rem, 20vw);
+}
+
+.hero .hero-content{
+  position: relative;
+  width: clamp(100px, 50%, 300px);
+  aspect-ratio: 1;
+  
+}
+.hero .hero-content::after{
+  content:'';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  aspect-ratio: 1;
+  background: var(--light-red);
+  border-radius: 100%;
+  
+}
+
+
+.hero .hero-content *{ position: absolute;
+   /*border: 1px solid red;*/
+   font-size: 10vw;
+ }
+.hero-content h1{
+  width: 100%;
+   z-index: 3;
+   top: -10%;
+   left: -20%;
+   /*transform: translate(-10vw, -7vw);*/
+   
+ }
+.hero-content h2{
+   z-index: 5;
+   bottom:  -30%;
+   right: -20%;
+   
+   -webkit-text-stroke: 2px #eee ;
+   color: transparent;
+   
+ }
+.hero-content img.hero-content-img{
+  width: 100%;
+  
+   z-index: 4;
+   top: 15%;
+   left: -6%;
+   /*transform: translate(-6vw, 10vw);*/
+ }
+
+.hero .hero-img{
+  width: 60%;
+  transform: translateY(-10%);
+}
+
+.hero-ground{
+  width: 100vw;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+/*background element in hero */
+.circle{
+  background: hsl(var(--light-yellow));
+  min-width: 50vw;
+  opacity: 0.23 !important;
+  top: 25%;
+  left: -20%;
+}
+
+.bk-ring{
+  background-image: url('Assets/img/bk-ring.png');
+  width: 6rem;
+  left: 0rem;
+  top: 40%;
+  
+}
+
+.bk-line{
+  background-image: url('Assets/img/bk-line.png');
+  width: 8rem;
+  right: -3rem;
+  top: 30%;
+  rotate: 60deg;
+}
+
+.bk-line45{
+  background-image: url('Assets/img/bk-line45.png');
+  width: 5rem;
+  right: 0rem;
+  top: 60%;
+  rotate: 200deg;
+  filter: hue-rotate(-20deg);
+}
+/* 
+  > media queries hero section
+*/
+
+
+/*
+  > cursor invert  start
+*/
+.cursor-invert{
+  background: url('Assets/img/cursor-invert.jpg') ;
+  background-size: cover;
+  height: 50vh;
+  color: #000;
+}
+.cursor-invert .custom-cursor{
+  display: block;
+  width: 50vw;
+border-radius:   63% 37% 44% 56% / 45% 64% 36% 55%; 
+  backdrop-filter: invert(100%);
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 0;
+  top: 0;
+  z-index: 2;
+  animation: rad-change 0.6s linear infinite alternate;
+}
+
+@keyframes rad-change {
+  0%{border-radius:   63% 37% 44% 56% / 45% 64% 36% 55%; }
+  50%{border-radius: 48% 52% 44% 56% / 45% 56% 44% 55% ; }
+  100%{border-radius: 45% 55% 48% 52% / 70% 73% 27% 30%  ; }
+}
+
+
+/*
+  > Intro Grid wala section part start
+*/
+.introSection{
+  min-height: 100vh;
+  overflow: hidden;
+  background: hsl(var(--light-yellow));
+  color: hsla(var(--bg), 1);
+}
+
+.introGrid{
+  display: grid;
+  grid-template-areas: 
+    "y o u1 r"
+    "w e b star"
+    "d e v star"
+    "d u2 d2 e2"
+  ;
+  
+  gap: 0.3rem;
+  width: 98%;
+  height: 30vh;
+  margin: 2rem auto;
+  &:hover{animation: grid-change 0.5s linear 7 ;}
+  
+}
+@keyframes grid-change{
+  0%, 20% {
+    grid-template-areas: 
+      "y u1 o w"
+      "r e b star"
+      "d e d2 star"
+      "d u2 v e2";
+  }
+  40%, 60% {
+    grid-template-areas: 
+      "y e d r"
+      "w e d e2"
+      "v o b star"
+      "u1 u2 d2 star";
+  }
+  
+  80%, 100%{
+    grid-template-areas: 
+    "y o u1 r"
+    "w e b star"
+    "d e v star"
+    "d u2 d2 e2"
+  ;
+  }
+}
+
+.introGrid span{
+  transition: 2s all;
+  overflow: hidden;
+  text-align: center;
+  font-family: tarr;
+  font-size: 4rem;
+  line-height: 0;
+  border: 1px solid hsla(var(--bg), 1);
+}
+
